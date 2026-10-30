@@ -13,15 +13,15 @@ services:
       rede2:
         ipv4_address: 192.168.140.254
         interface_name: eth2
-  dnsserver:
-    build: docker/dnsserver
-    hostname: dnsserver
+  arya:
+    build: docker/arya
+    hostname: arya
     networks: 
       dhcp_lab:
-        ipv4_address: 192.168.130.9  
+        ipv4_address: 192.168.10.1
     volumes:
-      - ./dnsserver/named.conf.local:/etc/bind/named.conf.local
-      - ./dnsserver/zonas:/var/cache/bind/zonas          
+      - ./arya/named.conf.local:/etc/bind/named.conf.local
+      - ./arya/zonas:/var/cache/bind/zonas          
   kea:
     build: ./docker/kea
     container_name: kea
@@ -41,8 +41,11 @@ services:
         ipv4_address: 192.168.130.221
         mac_address: 02:42:ac:11:00:10  # dirección HW fija
 
+    cap_add:
+      - NET_ADMIN
+
     command: >
-      sh -c "dhclient -v eth0 && sleep infinity"
+      sh -c "ip addr flush dev eth0 && dhclient -v eth0 && sleep infinity"
 
   cliente2:
     build: ./docker/cliente
@@ -51,8 +54,12 @@ services:
       dhcp_lab:
         ipv4_address: 192.168.130.222
 
+    cap_add:
+      - NET_ADMIN
+
     command: >
-      sh -c "dhclient -v eth0 && sleep infinity"
+      sh -c "ip addr flush dev eth0 && dhclient -v eth0 && sleep infinity"
+      
 
 networks:
   dhcp_lab:
@@ -70,4 +77,5 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 192.168.200.0/24             
+        - subnet: 192.168.200.0/24    
+  
