@@ -10,4 +10,5 @@ $TTL    86400
 @       IN      NS      arya.stark.lan.
 
 ; Rexistros A dos servidores de nomes
-arya          IN      A       192.168.10.1.
+arya          IN      A       192.168.10.1
+ned           IN      A       192.168.10.2

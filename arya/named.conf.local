@@ -17,7 +17,7 @@ zone "10.168.192.in-addr.arpa" {
 zone "lannister.lan"{
     type primary;
     file "zonas/db.lannister.lan";
-};db.12.168.192
+};
 
 zone "11.168.192.in-addr.arpa"{
     type primary;

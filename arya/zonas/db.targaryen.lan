@@ -7,7 +7,6 @@ $TTL    86400
                         86400 )     ; TTL mínimo
 
 ; Servidores de nomes
-@       IN      NS      ns1.test.lan.
+@       IN      NS      arya.stark.lan.
 
 ; Rexistros A dos servidores de nomes
-ns1          IN      A       192.168.130.9

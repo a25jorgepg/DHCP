@@ -9,3 +9,4 @@ $TTL    86400
 ; Servidores de nomes
 @       IN      NS      arya.stark.lan.
 1       IN      PTR     arya.stark.lan.
+2       IN      PTR     ned.stark.lan.

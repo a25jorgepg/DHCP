@@ -8,4 +8,3 @@ $TTL    86400
 
 ; Servidores de nomes
 @       IN      NS      arya.lannister.lan.
-1       IN      PTR     arya.lannister.lan.
