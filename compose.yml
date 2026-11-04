@@ -58,6 +58,16 @@ services:
       - NET_ADMIN
     command: >
       sh -c "ip addr flush dev eth0 && dhclient -v eth0 && sleep infinity"
+      
+  cliente3:
+  build: ./docker/cliente
+  networks:
+    rede_lannister:
+      ipv4_address: 192.168.11.51
+  cap_add:
+    - NET_ADMIN
+  command: >
+    sh -c "ip addr flush dev eth0 && dhclient -v eth0 && sleep infinity"
 
 networks:
   rede_stark:
