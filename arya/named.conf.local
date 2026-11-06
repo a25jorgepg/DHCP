@@ -2,36 +2,49 @@
 // Do any local configuration here
 //
 
+key "chave-stark" {
+        algorithm hmac-sha256;
+        secret "vTDFBXC5M44F9MkwOwZHcLKzK2xLTmXzDJj5y49elfs=";
+};
+
+// Rede Stark.lan
+
 zone "stark.lan" {
 	type primary;
     file "zonas/db.stark.lan";
+    allow-update{key "chave-stark";};
 };
 
 zone "10.168.192.in-addr.arpa" {
     type primary;
     file "zonas/db.10.168.192";
+    allow-update{key "chave-stark";};
 };
 
-
+// Rede Lannister.lan
 
 zone "lannister.lan"{
     type primary;
     file "zonas/db.lannister.lan";
+    allow-update{key "chave-stark";};
 };
 
 zone "11.168.192.in-addr.arpa"{
     type primary;
     file "zonas/db.11.168.192";
+    allow-update{key "chave-stark";};
 };
 
-
+// Rede Targaryen.lan
 
 zone "targaryen.lan"{
     type primary;
     file "zonas/db.targaryen.lan";
+    allow-update{key "chave-stark";};
 };
 
 zone "12.168.192.in-adrr.arpa"{
     type primary;
     file "zonas/db.12.168.192";
+    allow-update{key "chave-stark";};
 };

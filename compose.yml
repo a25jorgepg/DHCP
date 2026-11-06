@@ -21,6 +21,8 @@ services:
   arya:
     build: docker/dnsserver
     hostname: arya
+    environment:
+      - GATEWAY=192.168.10.254
     networks: 
       rede_stark:
         ipv4_address: 192.168.10.9
@@ -36,10 +38,12 @@ services:
         ipv4_address: 192.168.10.2
     volumes:
       - ./ned/kea-dhcp4.conf.json:/etc/kea/kea-dhcp4.conf
+      - ./ned/kea-dhcp4-ddns.json:/etc/kea/kea-dhcp4-ddns.conf
+      - ./logs:/var/log/kea
 
-  cliente1:
+  bran:
     build: ./docker/cliente
-    container_name: client1
+    container_name: bran
     mac_address: 02:42:ac:11:00:10
     networks:
       rede_stark:
@@ -49,8 +53,9 @@ services:
     command: >
       sh -c "ip addr flush dev eth0 && dhclient -v eth0 && sleep infinity"
 
-  cliente2:
+  jon:
     build: ./docker/cliente
+    container_name: jon
     networks:
       rede_stark:
         ipv4_address: 192.168.10.222
@@ -59,8 +64,20 @@ services:
     command: >
       sh -c "ip addr flush dev eth0 && dhclient -v eth0 && sleep infinity"
       
-  cliente3:
+  sansha:
     build: ./docker/cliente
+    container_name: sansha
+    networks:
+      rede_stark:
+        ipv4_address: 192.168.10.223
+    cap_add:
+      - NET_ADMIN
+    command: >
+      sh -c "ip addr flush dev eth0 && dhclient -v eth0 && sleep infinity"
+
+  jamie:
+    build: ./docker/cliente
+    container_name: jamie
     networks:
       rede_lannister:
         ipv4_address: 192.168.11.51
@@ -69,24 +86,35 @@ services:
     command: >
       sh -c "ip addr flush dev eth0 && dhclient -v eth0 && sleep infinity"
 
-  networks:
-    rede_stark:
-      driver: bridge
-      ipam:
-        config:
-          - subnet: 192.168.10.0/24
-    rede_lannister:
-      driver: bridge
-      ipam:
-        config:
-          - subnet: 192.168.11.0/24
-    rede_targaryen:
-      driver: bridge
-      ipam:
-        config:
-          - subnet: 192.168.12.0/24
-    rede_wan:
-      driver: bridge
-      ipam:
-        config:
-          - subnet: 192.168.200.0/24
+  daenerys:
+    build: ./docker/cliente
+    container_name: daenerys
+    networks:
+      rede_targaryen:
+        ipv4_address: 192.168.12.51
+    cap_add:
+      - NET_ADMIN
+    command: >
+      sh -c "ip addr flush dev eth0 && dhclient -v eth0 && sleep infinity"
+
+networks:
+  rede_stark:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.10.0/24
+  rede_lannister:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.11.0/24
+  rede_targaryen:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.12.0/24
+  rede_wan:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.200.0/24

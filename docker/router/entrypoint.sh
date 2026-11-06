@@ -18,4 +18,5 @@ ip addr add 192.168.10.252/24 dev eth1
 
 # Mantener el contenedor vivo
 #Chamar ao relay
+dhcp-helper -s 192.168.10.2 -i eth2 -i eth3 -d      # Solo se necesitan na eth2 e na eth3 porque ned (servidor DHCP) xa está na rede_stark (eth1)
 sleep infinity

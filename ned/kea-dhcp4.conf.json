@@ -27,12 +27,15 @@
       {
         "id": 1,
         "pools": [
-          {"pool": "192.168.10.30 - 192.168.10.32"},
-          {"pool": "192.168.10.101 - 192.168.10.230",
-            "option-data":[
+          {
+            "pool": "192.168.10.30 - 192.168.10.32"
+          },
+          {
+            "pool": "192.168.10.101 - 192.168.10.230",
+            "option-data": [
               {
-                "name":"routers",
-                "data":"192.168.10.253"
+                "name": "routers",
+                "data": "192.168.10.253"
               }
             ]
           }
@@ -42,37 +45,60 @@
           {
             "hw-address": "02:42:ac:11:00:10",
             "ip-address": "192.168.10.32",
-            "option-data":[
+            "option-data": [
               {
-                "name":"routers",
-                "data":"192.168.10.252"
+                "name": "routers",
+                "data": "192.168.10.252"
               }
             ]
           }
         ],
-        "option-data":[
+        "option-data": [
           {
-            "name":"domain-search",
-            "data":"stark.lan"
+            "name": "domain-search",
+            "data": "stark.lan"
           },
           {
-            "name":"routers",
-            "data":"192.168.10.254"
+            "name": "routers",
+            "data": "192.168.10.254"
           }
         ]
       },
       {
-        "id":2,
+        "id": 2,
         "subnet": "192.168.11.0/24",
-        "pools":[{"pool":"192.168.11.50 - 192.168.11.90"}],
-        "option-data":[
+        "pools": [
           {
-            "name":"domain-search",
-            "data":"lannister.lan"
+            "pool": "192.168.11.50 - 192.168.11.90"
+          }
+        ],
+        "option-data": [
+          {
+            "name": "domain-search",
+            "data": "lannister.lan"
           },
           {
             "name": "routers",
             "data": "192.168.11.254"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "subnet": "192.168.12.0/24",
+        "pools": [
+          {
+            "pool": "192.168.12.10 - 192.168.12.200"
+          }
+        ],
+        "option-data": [
+          {
+            "name": "domain-search",
+            "data": "targaryen.lan"
+          },
+          {
+            "name": "routers",
+            "data": "192.168.12.254"
           }
         ]
       }
